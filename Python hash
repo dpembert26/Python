@@ -1,0 +1,10 @@
+import json
+Json = {
+  "name": "flare",
+  "kind": "cat"
+}
+
+print(Json["kind"])
+#data = json.dumps(Json)
+#obj = json.loads(data)
+#print(obj["kind"])
