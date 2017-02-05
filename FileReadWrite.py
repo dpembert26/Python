@@ -25,14 +25,14 @@ def writefile():
 # get match for url read in from file
 def geturl():
     for content in readfile():
-        pattern = r"\w.+(shareperl).+"
+        pattern = r"\w.+sharepoint.+"
         getpat = re.compile(pattern)
-        get_content = getpat.search(content)
+        get_content = getpat.search(content , re.IGNORECASE)
 
         if get_content:
             print("MATCHED: This is the url's name %s" % get_content.group(0))
             writefile()
-            break
+
         else:
             print("The match came out as %s" % get_content + " for url %s" % content + ". The url is not found")
 
