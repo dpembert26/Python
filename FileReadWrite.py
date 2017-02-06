@@ -37,8 +37,10 @@ def geturl():
             print("The match came out as %s" % get_content + " for url %s" % content + ". The url is not found")
 
 
+# main function defined
 def main():
     readfile()
     geturl()
 
+# main function called
 main()
