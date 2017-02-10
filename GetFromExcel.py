@@ -1,4 +1,7 @@
 import sys, re, openpyxl, os
+filename = ""
+filename_dir = ""
+current_dir = ""
 
 
 def get_current_dir():
@@ -29,11 +32,11 @@ def read_excel():
     top_row = sheet.max_row
 
     for col in range(1, top_col + 1):
-        col_arr.append(sheet.cell(row = 1, column = col).value)
+        col_arr.append(sheet.cell(row=1, column=col).value)
 
-    for row_val in range(2,top_row + 1):
-        for col_val in range(1,top_col + 1):
-            excel_obj[col_arr[col_val - 1]] = sheet.cell(row = row_val, column = col_val).value
+    for row_val in range(2, top_row + 1):
+        for col_val in range(1, top_col + 1):
+            excel_obj[col_arr[col_val - 1]] = sheet.cell(row=row_val, column=col_val).value
         print(excel_obj)
 
 
@@ -44,4 +47,3 @@ def main():
 
 
 main()
-
