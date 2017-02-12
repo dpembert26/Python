@@ -1,7 +1,11 @@
-import sys, re, openpyxl, os
+# Import modules
+import openpyxl
+import os
 filename = ""
 filename_dir = ""
 current_dir = ""
+
+# Function to gather information about the current working directory and file directory
 
 
 def get_current_dir():
@@ -13,6 +17,8 @@ def get_current_dir():
     current_dir = os.getcwd()
     print("The current working directory is %s " % current_dir)
 
+# Function to set the current working directory to the file directory if they are not the same
+
 
 def get_set_working_dir():
     if current_dir != filename_dir:
@@ -21,6 +27,8 @@ def get_set_working_dir():
         print("Changed the current directory to match the directory where the file is located: %s " % working_dir)
     else:
         print("Current directory matches the directory where the file is located: %s " % current_dir)
+
+# Function to read the information from the top columns and the rest of the excel and put them in a dictionary
 
 
 def read_excel():
@@ -36,8 +44,11 @@ def read_excel():
 
     for row_val in range(2, top_row + 1):
         for col_val in range(1, top_col + 1):
-            excel_obj[col_arr[col_val - 1]] = sheet.cell(row=row_val, column=col_val).value
-        print(excel_obj)
+            excel_obj[col_arr[col_val - 1] + str(row_val - 1)] = sheet.cell(row=row_val, column=col_val).value
+    print(excel_obj)
+
+
+# Main function
 
 
 def main():
@@ -45,5 +56,5 @@ def main():
     get_set_working_dir()
     read_excel()
 
-
+# Call main function
 main()

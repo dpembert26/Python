@@ -21,9 +21,11 @@
       <file leaf-file-name="GetFromExcel.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GetFromExcel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="48" column="6" lean-forward="false" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
-              <folding />
+            <state relative-caret-position="799">
+              <caret line="47" column="19" lean-forward="false" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+              <folding>
+                <element signature="e#17#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -48,10 +50,10 @@
         <option value="$PROJECT_DIR$/Third Script" />
         <option value="$PROJECT_DIR$/More Python" />
         <option value="$PROJECT_DIR$/Python Objects" />
-        <option value="$PROJECT_DIR$/Python hash" />
         <option value="$PROJECT_DIR$/Second Script" />
         <option value="$PROJECT_DIR$/FileReadWrite.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js" />
+        <option value="$PROJECT_DIR$/Python hash" />
         <option value="$PROJECT_DIR$/GetFromExcel.py" />
       </list>
     </option>
@@ -78,6 +80,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -93,7 +96,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -105,23 +107,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.GetFromExcel">
-    <configuration default="false" name="Python Objects" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Program Files\Python36-32\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Python Scripts" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python Objects" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="Second Script" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -186,6 +171,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Python Scripts" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GetFromExcel.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Python hash" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Python Scripts" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python hash" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -325,19 +327,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.Python Objects" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Second Script" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Third Script" />
-      <item index="3" class="java.lang.String" itemvalue="Python.FileReadWrite" />
-      <item index="4" class="java.lang.String" itemvalue="Python.GetFromExcel" />
+      <item index="0" class="java.lang.String" itemvalue="Python.Second Script" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Third Script" />
+      <item index="2" class="java.lang.String" itemvalue="Python.FileReadWrite" />
+      <item index="3" class="java.lang.String" itemvalue="Python.GetFromExcel" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Python hash" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.GetFromExcel" />
-        <item index="1" class="java.lang.String" itemvalue="Python.FileReadWrite" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Third Script" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Second Script" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Python Objects" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Python hash" />
+        <item index="2" class="java.lang.String" itemvalue="Python.FileReadWrite" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Third Script" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Second Script" />
       </list>
     </recent_temporary>
   </component>
@@ -397,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486605525320</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="This is an excel reader script. Modified 2/9/2017">
+      <created>1486689068634</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1486689068634</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -418,7 +427,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.50595236" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.49702382" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.49702382" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29787233" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" x="0" y="269" width="1362" height="190" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29787233" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" x="0" y="269" width="1362" height="190" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.4940476" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -459,7 +468,8 @@
     <MESSAGE value="Script to read and write from files. Master copy." />
     <MESSAGE value="This is an excel reader script." />
     <MESSAGE value="This is an excel reader script. Modified" />
-    <option name="LAST_COMMIT_MESSAGE" value="This is an excel reader script. Modified" />
+    <MESSAGE value="This is an excel reader script. Modified 2/9/2017" />
+    <option name="LAST_COMMIT_MESSAGE" value="This is an excel reader script. Modified 2/9/2017" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -774,20 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Second Script">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="50" lean-forward="false" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Third Script">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/First script">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -795,32 +791,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/More Python">
+    <entry file="file://$PROJECT_DIR$/Third Script">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Python hash">
+    <entry file="file://$PROJECT_DIR$/Second Script">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state relative-caret-position="51">
+          <caret line="3" column="50" lean-forward="false" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Python Objects">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3">
+        <state relative-caret-position="102">
           <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python hash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/More Python">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GetFromExcel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="6" lean-forward="false" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
-          <folding />
+        <state relative-caret-position="799">
+          <caret line="47" column="19" lean-forward="false" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+          <folding>
+            <element signature="e#17#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
