@@ -44,11 +44,14 @@ def read_excel():
 
     for row_val in range(2, top_row + 1):
         for col_val in range(1, top_col + 1):
+
             excel_obj[col_arr[col_val - 1] + str(row_val - 1)] = sheet.cell(row=row_val, column=col_val).value
     print(excel_obj)
 
 
 # Main function
+
+           
 
 
 def main():
