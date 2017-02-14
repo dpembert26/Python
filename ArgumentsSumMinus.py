@@ -12,5 +12,7 @@ answer2 = args.x - args.y
 
 if args.sum:
     print("{} plus {} is equals to {}".format(args.x, args.y , answer1))
-else:
+elif args.minus:
     print("{} minus {} is equals to {}".format(args.x, args.y, answer2))
+else:
+    print("Please put in either --sum or --minus before the numbers x and y")
