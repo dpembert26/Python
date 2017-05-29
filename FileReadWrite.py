@@ -18,7 +18,7 @@ def writefile():
     file2 = r"C:\Users\darin\Documents\TestFile.txt"
     write = 'w'
     writer = open(file2, mode=write)
-    writer.write(r"The pattern for the url was matched\n")
+    writer.write("The pattern for the url was matched\n")
     writer.close()
 
 
