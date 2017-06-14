@@ -7,5 +7,5 @@ for num in range(1, 1000):
     if num % 3 == 0 or num % 5 == 0:
         total_list.append(num)
         total += num
-print(total)
+print("The total is: %d "% total)
 print(total_list)
