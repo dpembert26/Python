@@ -15,4 +15,4 @@ if args.sum:
 elif args.minus:
     print("{} minus {} is equals to {}".format(args.x, args.y, answer2))
 else:
-    print("Please put in either --sum or --minus before the numbers x and y")
+    print("Please put in either --sum or --minus before the numbers %s" % args.x + " and %s" % args.y)
