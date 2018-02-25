@@ -10,9 +10,9 @@ current_dir = ""
 
 def get_current_dir():
     global filename
-    filename = "twInventory7.xlsx"
+    filename = "House Things to do.xlsx"
     global filename_dir
-    filename_dir = r"C:\CSI"
+    filename_dir = r"C:\Users\Darin\Documents"
     global current_dir
     current_dir = os.getcwd()
     print("The current working directory is %s " % current_dir)
@@ -33,7 +33,7 @@ def get_set_working_dir():
 
 def read_excel():
     workbook = openpyxl.load_workbook(filename)
-    sheet = workbook.get_sheet_by_name("windowsClusterInfo")
+    sheet = workbook["Sheet1"]
     excel_obj = {}
     col_arr = []
     top_col = sheet.max_column
@@ -52,12 +52,11 @@ def read_excel():
 # Main function
 
            
-
-
 def main():
     get_current_dir()
     get_set_working_dir()
     read_excel()
+
 
 # Call main function
 main()
