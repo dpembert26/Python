@@ -19,6 +19,7 @@ import boto3
 import wget
 import sys
 import os
+import re
 
 # Variable holding link
 coc_link = "https://mediarouting.vestahub.com/Media/93513673/box/270x406"
@@ -55,13 +56,15 @@ s3_resource = boto3.resource(
     aws_session_token = credentials['SessionToken'],
 )
 
-# Get s3 bucket
+# Get s3 bucket and put file in it
 try:
     for bucket in s3_resource.buckets.all():
+        m = re.search(r".+\(\w+='(\w+)'", str(bucket))
+        bucket_name = m.group(1)
         data = open(full_file_name,  'rb')
         s3 = boto3.client('s3')
-        s3.put_object(Bucket='bucket-name', Key=full_file_name, Body=data)
-        print("{} was copied over to the bucket called {}".format(filename, bucket))
+        s3.put_object(Bucket=bucket_name, Key=full_file_name, Body=data)
+        print("The file {} was copied to the bucket {}".format(filename, bucket_name))
 except:
     Errors = sys.exc_info()
     for idx,error in enumerate(Errors):
