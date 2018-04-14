@@ -78,15 +78,16 @@ def upload_to_s3():
     try:
         for bucket in s3_resource.buckets.all():
             m = re.search(r".+\(\w+='(\w+)'", str(bucket))
+            # Getting the bucket name
             bucket_name = m.group(1)
-            response = s3_resource.Object(bucket_name,full_file_name).put(Body=open(full_file_name, 'rb'))
+            response = s3_resource.Object(bucket_name,filename).put(Body=open(full_file_name, 'rb'))
             # Creating file for the header contents
             created = create_file(response)
             print("The file {} was copied over to the bucket {}".format(filename,bucket_name))
             print("Writing header info to text file {}".format(created[0]))
             print(response)
             print("Uploading file {} to the bucket {}".format(created[0], bucket_name))
-            file_resp = s3_resource.Object(bucket_name,created[1]).put(Body=open(created[1], 'rb'))
+            file_resp = s3_resource.Object(bucket_name,created[0]).put(Body=open(created[1], 'rb'))
             print("Finished uploading file {} to bucket {}".format(created[0], bucket_name))
     except:
         Errors = sys.exc_info()
