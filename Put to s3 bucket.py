@@ -23,7 +23,11 @@ import sys
 import os
 import re
 import json
+from io import StringIO
 
+# global scope variable for response json
+response = ""
+flag = "no"
 
 # Function to create full paths for files
 def create_full_paths(dir,file):
@@ -36,17 +40,33 @@ def create_full_paths(dir,file):
             if idx < 2:
                 print(error)
 
+
 # Filename/url and path declaration for all files
 image_name = "vestahub.jpg"
 dir_path = r"C:\Users\Darin\Pictures/"
+
 # filename to call downloaded file(image)
 coc_link = "https://mediarouting.vestahub.com/Media/93513673/box/270x406"
+
 # File name for header.txt declared
 file_name = "header.txt"
+
 # Create full path for image file
 full_image_path = create_full_paths(dir_path,image_name)
+
 # Create full path for header.txt file
 full_text_path = create_full_paths(dir_path,file_name)
+
+# File name for header_value.txt declared
+file_value_name = "header_value.txt"
+
+# Create full path for header_value file
+full_value_path = create_full_paths(dir_path,file_value_name)
+
+
+# Define request type variables for both s3 and cloudfront to look for in response output
+s3_header = 'x-amz-request-id'
+cloudfront_header = 'x-amz-cf-id'
 
 
 # Function to download image file to local machine
@@ -66,26 +86,10 @@ def download_to_local(link,file,path):
                 print(error)
 
 
-# Function that creates and write content to header.txt file on local machine
-def create_file(file_contents,path):
-    try:
-        # File name for header.txt declare
-        file = open(path, 'w')
-        file.write("Header content from PUT to S3 in JSON\n")
-        file.write("  \n\n")
-        # Convert the dictionary to a string before we write the contents to text
-        file_contents = json.dumps(file_contents)
-        file.write(file_contents)
-        file.close()
-    except:
-        Errors = sys.exc_info()
-        for idx, error in enumerate(Errors):
-            if idx < 2:
-                print(error)
-
-
 # Function to upload files to s3 bucket
 def upload_to_s3(file_path,file):
+    # declare global variable for response json content
+    global response
     # Prepare connection to S3 bucket
     sts_client = boto3.client('sts')
 
@@ -118,24 +122,56 @@ def upload_to_s3(file_path,file):
     return response
 
 
-def check_for_header(file_contents):
+# Function that creates and write content to header.txt file on local machine
+def create_file(file_contents,path):
+    try:
+        # File name for header.txt declare
+        file = open(path, 'w')
+        file.write("Header content from PUT to S3 in JSON\n")
+        file.write("  \n\n")
+        # Convert the dictionary to a string before we write the contents to text
+        file_contents = json.dumps(file_contents)
+        file.write(file_contents)
+        file.close()
+        print("Writing of contents to the file {} is complete".format(path))
+        print("\n")
+    except:
+        Errors = sys.exc_info()
+        for idx, error in enumerate(Errors):
+            if idx < 2:
+                print(error)
+
+
+def check_for_header(file_contents,header,fl):
     # declare global variable called flag(This gets a value of yes if the header is present in the output)
-    global flag
+
     # look for x-amz-cf-id(CloudFront) which is a header that has a value that identifies the request
+    # look for x-amz-request-id which is the header that is created by s3 to uniquely identify the request
     # iterating through nested dictionary
+    old_stdout = sys.stdout
+    result = StringIO()
+
+    sys.stdout = result
     for key, value in file_contents.items():
         if value:
             if isinstance(value, dict):
-                for key3,value3 in value.items():
-                    if key3 == 'x-amz-request-id':
-                        print("Key: %s " % key3 % "  Value: %s" % value3 )
-                        print("The header {} is present in the response output with value {}".format(key3,value3))
-                        print("\n")
-                        flag = "yes"
-                        break
+                for key1,value1 in value.items():
+                    if value1:
+                        if isinstance(value1, dict):
+                            for key2,value2 in value1.items():
+                                if key2 == header:
+                                    print("The header {} is present in the response output with value {}".format(key2,value2))
+                                    fl = "yes"
+                                    break
+                                if fl != "yes":
+                                    print("The header {} was not found in the response output".format(key2))
+                break
 
-        if flag != "yes":
-            print("The header is not present in the response output\n")
+    sys.stdout = old_stdout
+    result_string = result.getvalue()
+    file = open(r"C:\Users\Darin\Pictures/header_value.txt", 'w')
+    file.write(result_string)
+    file.close()
 
 
 def main():
@@ -145,13 +181,16 @@ def main():
     download_to_local(coc_link,image_name,dir_path)
 
     # Upload image file to s3
-    response_json =  upload_to_s3(full_image_path,image_name)
+    response_json = upload_to_s3(full_image_path,image_name)
 
     # Create and write content to header.txt
     create_file(response_json,full_text_path)
 
     # Upload header.txt to s3
     upload_to_s3(full_text_path,file_name)
+
+    # Check for x-amz-cf-id
+    check_for_header(response_json,s3_header,flag)
 
 
 main()
