@@ -24,10 +24,13 @@ import os
 import re
 import json
 from io import StringIO
+from PIL import Image
+
 
 # global scope variable for response json
 response = ""
 flag = "no"
+
 
 # Function to create full paths for files
 def create_full_paths(dir,file):
@@ -43,7 +46,7 @@ def create_full_paths(dir,file):
 
 # Filename/url and path declaration for all files
 image_name = "vestahub.jpg"
-dir_path = r"C:\Users\Darin\Pictures/"
+dir_path = r"C:\Users\Darin\Pictures\Corcoran/"
 
 # filename to call downloaded file(image)
 coc_link = "https://mediarouting.vestahub.com/Media/93513673/box/270x406"
@@ -142,7 +145,8 @@ def create_file(file_contents,path):
                 print(error)
 
 
-def check_for_header(file_contents,header,fl):
+# Function checks for the header in the response output and prints out if it is there or not
+def check_for_header(file_contents,header,fl,full_path):
     # declare global variable called flag(This gets a value of yes if the header is present in the output)
 
     # look for x-amz-cf-id(CloudFront) which is a header that has a value that identifies the request
@@ -163,15 +167,30 @@ def check_for_header(file_contents,header,fl):
                                     print("The header {} is present in the response output with value {}".format(key2,value2))
                                     fl = "yes"
                                     break
-                                if fl != "yes":
-                                    print("The header {} was not found in the response output".format(key2))
-                break
 
+                break
+    if fl != "yes":
+        print("The header {} was not found in the response output".format(key2))
     sys.stdout = old_stdout
     result_string = result.getvalue()
-    file = open(r"C:\Users\Darin\Pictures/header_value.txt", 'w')
+    file = open(full_path, 'w')
     file.write(result_string)
     file.close()
+    print(result_string)
+
+
+def remove_local_files(full_image,full_text,full_value,path):
+    # remove files from the local drive that was created from this script or copied to the harddrive
+    while True:
+        img_dir = path
+        for filename in os.listdir(img_dir):
+            filepath = os.path.join(img_dir, filename)
+            with Image.open(filepath) as im:
+                x, y = im.size
+            totalsize = x * y
+            if totalsize < 2073600:
+                os.remove(filepath)
+                print("The files {},{} and {} has been deleted".format(full_image, full_text, full_value))
 
 
 def main():
@@ -190,7 +209,13 @@ def main():
     upload_to_s3(full_text_path,file_name)
 
     # Check for x-amz-cf-id
-    check_for_header(response_json,s3_header,flag)
+    check_for_header(response_json,s3_header,flag,full_value_path)
+
+    # Upload header_value.txt to s3
+    upload_to_s3(full_value_path,file_value_name)
+
+    # Remove/clean up local files
+    remove_local_files(full_image_path,full_text_path,full_value_path,dir_path)
 
 
 main()
