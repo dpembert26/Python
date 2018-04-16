@@ -24,7 +24,7 @@ import os
 import re
 import json
 from io import StringIO
-from PIL import Image
+import subprocess
 
 
 # global scope variable for response json
@@ -129,15 +129,15 @@ def upload_to_s3(file_path,file):
 def create_file(file_contents,path):
     try:
         # File name for header.txt declare
-        file = open(path, 'w')
-        file.write("Header content from PUT to S3 in JSON\n")
-        file.write("  \n\n")
+        with open(path, 'w') as file:
+            file.write("Header content from PUT to S3 in JSON\n")
+            file.write("  \n\n")
         # Convert the dictionary to a string before we write the contents to text
-        file_contents = json.dumps(file_contents)
-        file.write(file_contents)
-        file.close()
-        print("Writing of contents to the file {} is complete".format(path))
-        print("\n")
+            file_contents = json.dumps(file_contents)
+            file.write(file_contents)
+            file.close()
+            print("Writing of contents to the file {} is complete".format(path))
+            print("\n")
     except:
         Errors = sys.exc_info()
         for idx, error in enumerate(Errors):
@@ -173,24 +173,24 @@ def check_for_header(file_contents,header,fl,full_path):
         print("The header {} was not found in the response output".format(key2))
     sys.stdout = old_stdout
     result_string = result.getvalue()
-    file = open(full_path, 'w')
-    file.write(result_string)
-    file.close()
+    with open(full_path, 'w') as file:
+        file.write(result_string)
+        file.close()
     print(result_string)
 
 
 def remove_local_files(full_image,full_text,full_value,path):
     # remove files from the local drive that was created from this script or copied to the harddrive
-    while True:
-        img_dir = path
-        for filename in os.listdir(img_dir):
-            filepath = os.path.join(img_dir, filename)
-            with Image.open(filepath) as im:
-                x, y = im.size
-            totalsize = x * y
-            if totalsize < 2073600:
-                os.remove(filepath)
-                print("The files {},{} and {} has been deleted".format(full_image, full_text, full_value))
+    try:
+        for filename in os.listdir(path):
+            full_file= os.path.join(path, filename)
+            os.unlink(full_file)
+            print("The files {},{} and {} has been deleted".format(full_image, full_text, full_value))
+    except:
+        Errors = sys.exc_info()
+        for idx, error in enumerate(Errors):
+            if idx < 2:
+                print(error)
 
 
 def main():
@@ -215,7 +215,7 @@ def main():
     upload_to_s3(full_value_path,file_value_name)
 
     # Remove/clean up local files
-    remove_local_files(full_image_path,full_text_path,full_value_path,dir_path)
+    # remove_local_files(full_image_path,full_text_path,full_value_path,dir_path)
 
 
 main()
