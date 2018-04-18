@@ -147,8 +147,6 @@ def create_file(file_contents,path):
 
 # Function checks for the header in the response output and prints out if it is there or not
 def check_for_header(file_contents,header,fl,full_path):
-    # declare global variable called flag(This gets a value of yes if the header is present in the output)
-
     # look for x-amz-cf-id(CloudFront) which is a header that has a value that identifies the request
     # look for x-amz-request-id which is the header that is created by s3 to uniquely identify the request
     # iterating through nested dictionary
@@ -170,7 +168,7 @@ def check_for_header(file_contents,header,fl,full_path):
 
                 break
     if fl != "yes":
-        print("The header {} was not found in the response output".format(key2))
+        print("The header {} was not found in the response output".format(header))
     sys.stdout = old_stdout
     result_string = result.getvalue()
     with open(full_path, 'w') as file:
