@@ -1,31 +1,29 @@
 # This is a simple Python script to show the use of classes
 # Pushed to github
 
-from tkinter import *
 
-OPTIONS = ["Toyota","Honda","Mazda","Hundai","Kia","BMW","Mercedes Benz","Ford"]
+class Car:
+    def __init__(self,model,make,color):
+        self.model = model
+        self.make = make
+        self.color = color
+        self.features = []
 
-master = Tk()
-variable = StringVar(master)
-variable.set(OPTIONS[0]) # default value
+    def add_features(self,feature):
+        self.features.append(feature)
 
-w = OptionMenu (master, variable,  *OPTIONS)
-w.pack()
-
-
-def ok():
-    print("You chose a " + variable.get())
-    master.quit()
-
-button = Button(master, text="OK", command=ok)
-button.pack()
+toyota = Car("Toyota","Rav4","Silver")
+audi = Car("Audi","Quatro","Black")
+mercedes = Car("Mercedes Benz","C class","White")
+bmw = Car("BMW","C3","Red")
 
 
-mainloop()
+toyota.add_features("Backup Camera")
+audi.add_features("Heated leather seats")
+mercedes.add_features("Automatic braking system")
+bmw.add_features("interactive windshield console")
 
-
-
-
+print("The {} {} comes in {} with a {} as an added feature".format(toyota.model,toyota.make,toyota.color,toyota.features))
 
 
 
