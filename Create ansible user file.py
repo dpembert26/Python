@@ -1,3 +1,4 @@
+
 '''
 Python script designed to do the following:
 
@@ -9,16 +10,15 @@ import sys
 import os
 import re
 import json
-import argparse
 from io import StringIO
 
 # Path and filename for Ansible user file(yml)
-ansible_file_path = r"C:\Users\dpemberton\Documents/"
+ansible_file_path = r"C:\Users\Darin\Downloads/"
 file_name = r"users.yml"
 
 # Path and filename for username text file
-text_file_path = r"C:\Users\dpemberton\Documents/"
-text_name = r"username.txt"
+text_file_path = r"C:\Users\Darin\Downloads/"
+text_name = r"names.txt"
 
 
 # Empty list defined to collect usernames
@@ -38,22 +38,19 @@ def create_full_paths(dir,file):
                 print(error)
 
 
-# Creating full path for the username text file
-user_full_path = create_full_paths(text_file_path,text_name)
-print(user_full_path)
-
-
 def get_text_contents(full_path):
     try:
         # File name for username.txt read
         with open(full_path, 'r') as file:
+            count = 0
             for line in file:
                 # Perform regex to get desired username format
-                # m = re.search(r".+(\w+\.\w+).+")
-                # username = m.group(1)
-                user_list.append(line)
-                file.close()
-
+                m = re.search(r".+?(\w+.\w+)(?=@).+", str(line))
+                username = m.group(1)
+                user_list.append(username)
+                count += 1
+            print("Count is {} and the List is {}".format(count,user_list))
+        file.close()
 
     except:
         Errors = sys.exc_info()
@@ -64,15 +61,34 @@ def get_text_contents(full_path):
     return user_list
 
 
+def build_yaml(users,full_path):
+    try:
+        with open(full_path, 'w') as file:
+            file.write("---\n")
+            file.write("users:\n")
+            for user in users:
+                file.write("  - username: " + user + "\n")
+        file.close()
+
+
+    except:
+        Errors = sys.exc_info()
+        for idx, error in enumerate(Errors):
+            if idx < 2:
+                print(error)
+
+
 def main():
-    # parse = argparse.ArgumentParser(description="Usernames to be extracted from username.txt")
-    # parse.add_argument("user_args", nargs='+', help="Arguments gathered from username file")
-    # args = parse.parse_args()
-    # if args.user_args:
-        # sys.argv[1:] = args.user_args
-        # del sys.argv[1:]
+    # Creating full path for the username text file
+    user_full_path = create_full_paths(text_file_path, text_name)
 
-    final_list = get_text_contents(user_full_path)
-    print(final_list)
+    ansible_full_path = create_full_paths(ansible_file_path, file_name)
 
-    main()
+    # Get the user names from the username file
+    get_text_contents(user_full_path)
+
+    # Create Yaml file from user names
+    build_yaml(user_list,ansible_full_path)
+
+
+main()
